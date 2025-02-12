@@ -1,5 +1,7 @@
 import random
 import string
+import requests
+
 # function that generates a single random character
 def random_character():
     choices = string.ascii_letters + string.digits + string.punctuation
@@ -22,18 +24,24 @@ def fetch_word():
     word = response.json()[0]
     return word
 
-    def replaceLetters():
-        word = word[0].upper() + word[1:]
+def replaceLetters():
+    word = word[0].upper() + word[1:]
 
-        if "a" in word:
-            word = word.replace("a", "@")
+    if "a" in word:
+        word = word.replace("a", "@")
 
-        return word
+    if "o" in word: 
+        word = word.replace("o", "0")
+
+    if "e" in word:
+        word = word.replace("e", "3")
+
+    return word
     
-    def generate_weaker_password():
-        word1 = fetch_word()
-        word2 = fetch_word()
-        password = word1+word2
-        return password
+def generate_weaker_password():
+    word1 = fetch_word()
+    word2 = fetch_word()
+    password = word1+word2
+    return password
 
 print(generate_weaker_password())
